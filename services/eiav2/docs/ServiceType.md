@@ -3,9 +3,9 @@
 ## Enum
 
 
-* `SINGLE_PORT` (value: `"SINGLE_PORT"`)
+* `SINGLE` (value: `"SINGLE"`)
 
-* `DUAL_PORT` (value: `"DUAL_PORT"`)
+* `DUAL` (value: `"DUAL"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

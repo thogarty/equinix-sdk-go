@@ -4,22 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Href** | Pointer to **string** | Routing protocol URI | [optional] 
 **Uuid** | Pointer to **string** | Routing protocol identifier | [optional] 
-**Type** | [**RoutingProtocolType**](RoutingProtocolType.md) |  | 
+**Type** | **string** | Allowed values: - BGP - DIRECT - STATIC  | 
 **Name** | **string** | Name of the routing protocol instance. | 
 **Description** | Pointer to **string** | Description of the routing protocol instance | [optional] 
 **Ipv4** | Pointer to [**RoutingProtocolIpv4**](RoutingProtocolIpv4.md) |  | [optional] 
 **Ipv6** | Pointer to [**RoutingProtocolIpv6**](RoutingProtocolIpv6.md) |  | [optional] 
 **ChangeLog** | [**ChangeLog**](ChangeLog.md) |  | 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Links** | [**[]Link**](Link.md) |  | 
+**CustomerAsn** | **int64** | Customer Autonomous System Number  | 
+**CustomerAsnRange** | Pointer to [**RoutingProtocolRequestBgpAllOfCustomerAsnRange**](RoutingProtocolRequestBgpAllOfCustomerAsnRange.md) |  | [optional] 
+**EquinixAsn** | **int64** | Equinix Autonomous System Number  | 
+**BgpAuthKey** | Pointer to **string** | BGP authentication key  | [optional] 
+**ExportPolicy** | [**ExportPolicy**](ExportPolicy.md) |  | 
 
 ## Methods
 
 ### NewRoutingProtocolReadModel
 
-`func NewRoutingProtocolReadModel(type_ RoutingProtocolType, name string, changeLog ChangeLog, links []Link, ) *RoutingProtocolReadModel`
+`func NewRoutingProtocolReadModel(type_ string, name string, changeLog ChangeLog, customerAsn int64, equinixAsn int64, exportPolicy ExportPolicy, ) *RoutingProtocolReadModel`
 
 NewRoutingProtocolReadModel instantiates a new RoutingProtocolReadModel object
 This constructor will assign default values to properties that have it defined,
@@ -33,6 +37,31 @@ will change when the set of required properties is changed
 NewRoutingProtocolReadModelWithDefaults instantiates a new RoutingProtocolReadModel object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetTags
+
+`func (o *RoutingProtocolReadModel) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *RoutingProtocolReadModel) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *RoutingProtocolReadModel) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *RoutingProtocolReadModel) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetHref
 
@@ -86,20 +115,20 @@ HasUuid returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *RoutingProtocolReadModel) GetType() RoutingProtocolType`
+`func (o *RoutingProtocolReadModel) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RoutingProtocolReadModel) GetTypeOk() (*RoutingProtocolType, bool)`
+`func (o *RoutingProtocolReadModel) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RoutingProtocolReadModel) SetType(v RoutingProtocolType)`
+`func (o *RoutingProtocolReadModel) SetType(v string)`
 
 SetType sets Type field to given value.
 
@@ -219,49 +248,114 @@ and a boolean to check if the value has been set.
 SetChangeLog sets ChangeLog field to given value.
 
 
-### GetTags
+### GetCustomerAsn
 
-`func (o *RoutingProtocolReadModel) GetTags() []string`
+`func (o *RoutingProtocolReadModel) GetCustomerAsn() int64`
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+GetCustomerAsn returns the CustomerAsn field if non-nil, zero value otherwise.
 
-### GetTagsOk
+### GetCustomerAsnOk
 
-`func (o *RoutingProtocolReadModel) GetTagsOk() (*[]string, bool)`
+`func (o *RoutingProtocolReadModel) GetCustomerAsnOk() (*int64, bool)`
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+GetCustomerAsnOk returns a tuple with the CustomerAsn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTags
+### SetCustomerAsn
 
-`func (o *RoutingProtocolReadModel) SetTags(v []string)`
+`func (o *RoutingProtocolReadModel) SetCustomerAsn(v int64)`
 
-SetTags sets Tags field to given value.
+SetCustomerAsn sets CustomerAsn field to given value.
 
-### HasTags
 
-`func (o *RoutingProtocolReadModel) HasTags() bool`
+### GetCustomerAsnRange
 
-HasTags returns a boolean if a field has been set.
+`func (o *RoutingProtocolReadModel) GetCustomerAsnRange() RoutingProtocolRequestBgpAllOfCustomerAsnRange`
 
-### GetLinks
+GetCustomerAsnRange returns the CustomerAsnRange field if non-nil, zero value otherwise.
 
-`func (o *RoutingProtocolReadModel) GetLinks() []Link`
+### GetCustomerAsnRangeOk
 
-GetLinks returns the Links field if non-nil, zero value otherwise.
+`func (o *RoutingProtocolReadModel) GetCustomerAsnRangeOk() (*RoutingProtocolRequestBgpAllOfCustomerAsnRange, bool)`
 
-### GetLinksOk
-
-`func (o *RoutingProtocolReadModel) GetLinksOk() (*[]Link, bool)`
-
-GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+GetCustomerAsnRangeOk returns a tuple with the CustomerAsnRange field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLinks
+### SetCustomerAsnRange
 
-`func (o *RoutingProtocolReadModel) SetLinks(v []Link)`
+`func (o *RoutingProtocolReadModel) SetCustomerAsnRange(v RoutingProtocolRequestBgpAllOfCustomerAsnRange)`
 
-SetLinks sets Links field to given value.
+SetCustomerAsnRange sets CustomerAsnRange field to given value.
+
+### HasCustomerAsnRange
+
+`func (o *RoutingProtocolReadModel) HasCustomerAsnRange() bool`
+
+HasCustomerAsnRange returns a boolean if a field has been set.
+
+### GetEquinixAsn
+
+`func (o *RoutingProtocolReadModel) GetEquinixAsn() int64`
+
+GetEquinixAsn returns the EquinixAsn field if non-nil, zero value otherwise.
+
+### GetEquinixAsnOk
+
+`func (o *RoutingProtocolReadModel) GetEquinixAsnOk() (*int64, bool)`
+
+GetEquinixAsnOk returns a tuple with the EquinixAsn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEquinixAsn
+
+`func (o *RoutingProtocolReadModel) SetEquinixAsn(v int64)`
+
+SetEquinixAsn sets EquinixAsn field to given value.
+
+
+### GetBgpAuthKey
+
+`func (o *RoutingProtocolReadModel) GetBgpAuthKey() string`
+
+GetBgpAuthKey returns the BgpAuthKey field if non-nil, zero value otherwise.
+
+### GetBgpAuthKeyOk
+
+`func (o *RoutingProtocolReadModel) GetBgpAuthKeyOk() (*string, bool)`
+
+GetBgpAuthKeyOk returns a tuple with the BgpAuthKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpAuthKey
+
+`func (o *RoutingProtocolReadModel) SetBgpAuthKey(v string)`
+
+SetBgpAuthKey sets BgpAuthKey field to given value.
+
+### HasBgpAuthKey
+
+`func (o *RoutingProtocolReadModel) HasBgpAuthKey() bool`
+
+HasBgpAuthKey returns a boolean if a field has been set.
+
+### GetExportPolicy
+
+`func (o *RoutingProtocolReadModel) GetExportPolicy() ExportPolicy`
+
+GetExportPolicy returns the ExportPolicy field if non-nil, zero value otherwise.
+
+### GetExportPolicyOk
+
+`func (o *RoutingProtocolReadModel) GetExportPolicyOk() (*ExportPolicy, bool)`
+
+GetExportPolicyOk returns a tuple with the ExportPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExportPolicy
+
+`func (o *RoutingProtocolReadModel) SetExportPolicy(v ExportPolicy)`
+
+SetExportPolicy sets ExportPolicy field to given value.
 
 
 

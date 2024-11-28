@@ -20,7 +20,6 @@ type ServiceState string
 
 // List of ServiceState
 const (
-	SERVICESTATE_DRAFT          ServiceState = "DRAFT"
 	SERVICESTATE_PENDING        ServiceState = "PENDING"
 	SERVICESTATE_PROVISIONING   ServiceState = "PROVISIONING"
 	SERVICESTATE_ACTIVE         ServiceState = "ACTIVE"
@@ -32,7 +31,6 @@ const (
 
 // All allowed values of ServiceState enum
 var AllowedServiceStateEnumValues = []ServiceState{
-	"DRAFT",
 	"PENDING",
 	"PROVISIONING",
 	"ACTIVE",

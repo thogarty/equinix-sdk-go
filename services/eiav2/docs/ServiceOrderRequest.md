@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Contacts** | Pointer to [**[]ServiceOrderContact**](ServiceOrderContact.md) |  | [optional] 
-**Draft** | Pointer to **bool** |  | [optional] [default to false]
 **PurchaseOrder** | Pointer to [**ServicePurchaseOrder**](ServicePurchaseOrder.md) |  | [optional] 
 **ReferenceNumber** | Pointer to **string** |  | [optional] 
 **Signature** | Pointer to [**OrderSignatureRequest**](OrderSignatureRequest.md) |  | [optional] 
@@ -79,31 +78,6 @@ SetContacts sets Contacts field to given value.
 `func (o *ServiceOrderRequest) HasContacts() bool`
 
 HasContacts returns a boolean if a field has been set.
-
-### GetDraft
-
-`func (o *ServiceOrderRequest) GetDraft() bool`
-
-GetDraft returns the Draft field if non-nil, zero value otherwise.
-
-### GetDraftOk
-
-`func (o *ServiceOrderRequest) GetDraftOk() (*bool, bool)`
-
-GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDraft
-
-`func (o *ServiceOrderRequest) SetDraft(v bool)`
-
-SetDraft sets Draft field to given value.
-
-### HasDraft
-
-`func (o *ServiceOrderRequest) HasDraft() bool`
-
-HasDraft returns a boolean if a field has been set.
 
 ### GetPurchaseOrder
 

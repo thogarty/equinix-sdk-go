@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `DRAFT` (value: `"DRAFT"`)
-
 * `PENDING` (value: `"PENDING"`)
 
 * `PROVISIONING` (value: `"PROVISIONING"`)

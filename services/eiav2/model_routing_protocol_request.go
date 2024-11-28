@@ -15,231 +15,155 @@ import (
 	"fmt"
 )
 
-// checks if the RoutingProtocolRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &RoutingProtocolRequest{}
-
-// RoutingProtocolRequest struct for RoutingProtocolRequest
+// RoutingProtocolRequest - struct for RoutingProtocolRequest
 type RoutingProtocolRequest struct {
-	Tags []string            `json:"tags,omitempty"`
-	Type RoutingProtocolType `json:"type"`
-	// Name of the routing protocol instance.
-	Name *string `json:"name,omitempty"`
-	// Description of the routing protocol instance
-	Description          *string `json:"description,omitempty"`
-	AdditionalProperties map[string]interface{}
+	RoutingProtocolRequestBgp    *RoutingProtocolRequestBgp
+	RoutingProtocolRequestDirect *RoutingProtocolRequestDirect
+	RoutingProtocolRequestStatic *RoutingProtocolRequestStatic
 }
 
-type _RoutingProtocolRequest RoutingProtocolRequest
-
-// NewRoutingProtocolRequest instantiates a new RoutingProtocolRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRoutingProtocolRequest(type_ RoutingProtocolType) *RoutingProtocolRequest {
-	this := RoutingProtocolRequest{}
-	this.Type = type_
-	return &this
-}
-
-// NewRoutingProtocolRequestWithDefaults instantiates a new RoutingProtocolRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewRoutingProtocolRequestWithDefaults() *RoutingProtocolRequest {
-	this := RoutingProtocolRequest{}
-	return &this
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *RoutingProtocolRequest) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
+// RoutingProtocolRequestBgpAsRoutingProtocolRequest is a convenience function that returns RoutingProtocolRequestBgp wrapped in RoutingProtocolRequest
+func RoutingProtocolRequestBgpAsRoutingProtocolRequest(v *RoutingProtocolRequestBgp) RoutingProtocolRequest {
+	return RoutingProtocolRequest{
+		RoutingProtocolRequestBgp: v,
 	}
-	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RoutingProtocolRequest) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
+// RoutingProtocolRequestDirectAsRoutingProtocolRequest is a convenience function that returns RoutingProtocolRequestDirect wrapped in RoutingProtocolRequest
+func RoutingProtocolRequestDirectAsRoutingProtocolRequest(v *RoutingProtocolRequestDirect) RoutingProtocolRequest {
+	return RoutingProtocolRequest{
+		RoutingProtocolRequestDirect: v,
 	}
-	return o.Tags, true
 }
 
-// HasTags returns a boolean if a field has been set.
-func (o *RoutingProtocolRequest) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
+// RoutingProtocolRequestStaticAsRoutingProtocolRequest is a convenience function that returns RoutingProtocolRequestStatic wrapped in RoutingProtocolRequest
+func RoutingProtocolRequestStaticAsRoutingProtocolRequest(v *RoutingProtocolRequestStatic) RoutingProtocolRequest {
+	return RoutingProtocolRequest{
+		RoutingProtocolRequestStatic: v,
 	}
-
-	return false
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *RoutingProtocolRequest) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetType returns the Type field value
-func (o *RoutingProtocolRequest) GetType() RoutingProtocolType {
-	if o == nil {
-		var ret RoutingProtocolType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *RoutingProtocolRequest) GetTypeOk() (*RoutingProtocolType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *RoutingProtocolRequest) SetType(v RoutingProtocolType) {
-	o.Type = v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *RoutingProtocolRequest) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RoutingProtocolRequest) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *RoutingProtocolRequest) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *RoutingProtocolRequest) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *RoutingProtocolRequest) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RoutingProtocolRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *RoutingProtocolRequest) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *RoutingProtocolRequest) SetDescription(v string) {
-	o.Description = &v
-}
-
-func (o RoutingProtocolRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *RoutingProtocolRequest) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o RoutingProtocolRequest) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	toSerialize["type"] = o.Type
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *RoutingProtocolRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+	// check if the discriminator value is 'BGP'
+	if jsonDict["type"] == "BGP" {
+		// try to unmarshal JSON data into RoutingProtocolRequestBgp
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestBgp)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestBgp, return on the first match
+		} else {
+			dst.RoutingProtocolRequestBgp = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestBgp: %s", err.Error())
 		}
 	}
 
-	varRoutingProtocolRequest := _RoutingProtocolRequest{}
-
-	err = json.Unmarshal(data, &varRoutingProtocolRequest)
-
-	if err != nil {
-		return err
+	// check if the discriminator value is 'DIRECT'
+	if jsonDict["type"] == "DIRECT" {
+		// try to unmarshal JSON data into RoutingProtocolRequestDirect
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestDirect)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestDirect, return on the first match
+		} else {
+			dst.RoutingProtocolRequestDirect = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestDirect: %s", err.Error())
+		}
 	}
 
-	*o = RoutingProtocolRequest(varRoutingProtocolRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "tags")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
-		o.AdditionalProperties = additionalProperties
+	// check if the discriminator value is 'STATIC'
+	if jsonDict["type"] == "STATIC" {
+		// try to unmarshal JSON data into RoutingProtocolRequestStatic
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestStatic)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestStatic, return on the first match
+		} else {
+			dst.RoutingProtocolRequestStatic = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestStatic: %s", err.Error())
+		}
 	}
 
-	return err
+	// check if the discriminator value is 'RoutingProtocolRequestBgp'
+	if jsonDict["type"] == "RoutingProtocolRequestBgp" {
+		// try to unmarshal JSON data into RoutingProtocolRequestBgp
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestBgp)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestBgp, return on the first match
+		} else {
+			dst.RoutingProtocolRequestBgp = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestBgp: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RoutingProtocolRequestDirect'
+	if jsonDict["type"] == "RoutingProtocolRequestDirect" {
+		// try to unmarshal JSON data into RoutingProtocolRequestDirect
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestDirect)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestDirect, return on the first match
+		} else {
+			dst.RoutingProtocolRequestDirect = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestDirect: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RoutingProtocolRequestStatic'
+	if jsonDict["type"] == "RoutingProtocolRequestStatic" {
+		// try to unmarshal JSON data into RoutingProtocolRequestStatic
+		err = json.Unmarshal(data, &dst.RoutingProtocolRequestStatic)
+		if err == nil {
+			return nil // data stored in dst.RoutingProtocolRequestStatic, return on the first match
+		} else {
+			dst.RoutingProtocolRequestStatic = nil
+			return fmt.Errorf("failed to unmarshal RoutingProtocolRequest as RoutingProtocolRequestStatic: %s", err.Error())
+		}
+	}
+
+	return nil
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src RoutingProtocolRequest) MarshalJSON() ([]byte, error) {
+	if src.RoutingProtocolRequestBgp != nil {
+		return json.Marshal(&src.RoutingProtocolRequestBgp)
+	}
+
+	if src.RoutingProtocolRequestDirect != nil {
+		return json.Marshal(&src.RoutingProtocolRequestDirect)
+	}
+
+	if src.RoutingProtocolRequestStatic != nil {
+		return json.Marshal(&src.RoutingProtocolRequestStatic)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *RoutingProtocolRequest) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.RoutingProtocolRequestBgp != nil {
+		return obj.RoutingProtocolRequestBgp
+	}
+
+	if obj.RoutingProtocolRequestDirect != nil {
+		return obj.RoutingProtocolRequestDirect
+	}
+
+	if obj.RoutingProtocolRequestStatic != nil {
+		return obj.RoutingProtocolRequestStatic
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableRoutingProtocolRequest struct {

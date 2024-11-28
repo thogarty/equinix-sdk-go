@@ -19,7 +19,7 @@ var _ MappedNullable = &DirectPeeringIpv6Request{}
 
 // DirectPeeringIpv6Request struct for DirectPeeringIpv6Request
 type DirectPeeringIpv6Request struct {
-	Connection *DirectPeeringIpv4RequestConnection `json:"connection,omitempty"`
+	Connection *string `json:"connection,omitempty"`
 	// Peering IP addresses in Version 6 (IPv6)
 	EquinixPeerIps []string `json:"equinixPeerIps,omitempty"`
 	// Virtual router group IP addresses in Version 6 (IPv6)
@@ -47,9 +47,9 @@ func NewDirectPeeringIpv6RequestWithDefaults() *DirectPeeringIpv6Request {
 }
 
 // GetConnection returns the Connection field value if set, zero value otherwise.
-func (o *DirectPeeringIpv6Request) GetConnection() DirectPeeringIpv4RequestConnection {
+func (o *DirectPeeringIpv6Request) GetConnection() string {
 	if o == nil || IsNil(o.Connection) {
-		var ret DirectPeeringIpv4RequestConnection
+		var ret string
 		return ret
 	}
 	return *o.Connection
@@ -57,7 +57,7 @@ func (o *DirectPeeringIpv6Request) GetConnection() DirectPeeringIpv4RequestConne
 
 // GetConnectionOk returns a tuple with the Connection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DirectPeeringIpv6Request) GetConnectionOk() (*DirectPeeringIpv4RequestConnection, bool) {
+func (o *DirectPeeringIpv6Request) GetConnectionOk() (*string, bool) {
 	if o == nil || IsNil(o.Connection) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *DirectPeeringIpv6Request) HasConnection() bool {
 	return false
 }
 
-// SetConnection gets a reference to the given DirectPeeringIpv4RequestConnection and assigns it to the Connection field.
-func (o *DirectPeeringIpv6Request) SetConnection(v DirectPeeringIpv4RequestConnection) {
+// SetConnection gets a reference to the given string and assigns it to the Connection field.
+func (o *DirectPeeringIpv6Request) SetConnection(v string) {
 	o.Connection = &v
 }
 

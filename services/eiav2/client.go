@@ -40,7 +40,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Equinix Internet Access API API v2.0
+// APIClient manages communication with the Equinix Internet Access API API v2.3.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,6 +49,8 @@ type APIClient struct {
 	// API Services
 
 	EIAServiceApi *EIAServiceApiService
+
+	ProductAvailabilityApi *ProductAvailabilityApiService
 }
 
 type service struct {
@@ -68,6 +70,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.EIAServiceApi = (*EIAServiceApiService)(&c.common)
+	c.ProductAvailabilityApi = (*ProductAvailabilityApiService)(&c.common)
 
 	return c
 }

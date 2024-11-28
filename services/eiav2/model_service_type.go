@@ -15,19 +15,19 @@ import (
 	"fmt"
 )
 
-// ServiceType SINGLE_PORT - Internet Access Service supported with one Connection originating from one AccessPoint on the ASide DUAL_PORT - Internet Access Service supported with two redundant Connections originating from two redundant AccessPoints on the Aside and terminating to two redundant Internet Routers on the ZSide
+// ServiceType SINGLE - Internet Access Service supported with one Connection originating from one AccessPoint on the ASide DUAL - Internet Access Service supported with two redundant Connections originating from two redundant AccessPoints on the Aside and terminating to two redundant Internet Routers on the ZSide
 type ServiceType string
 
 // List of ServiceType
 const (
-	SERVICETYPE_SINGLE_PORT ServiceType = "SINGLE_PORT"
-	SERVICETYPE_DUAL_PORT   ServiceType = "DUAL_PORT"
+	SERVICETYPE_SINGLE ServiceType = "SINGLE"
+	SERVICETYPE_DUAL   ServiceType = "DUAL"
 )
 
 // All allowed values of ServiceType enum
 var AllowedServiceTypeEnumValues = []ServiceType{
-	"SINGLE_PORT",
-	"DUAL_PORT",
+	"SINGLE",
+	"DUAL",
 }
 
 func (v *ServiceType) UnmarshalJSON(src []byte) error {

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Signatory** | [**OrderSignatureSignatory**](OrderSignatureSignatory.md) |  | 
+**Signatory** | [**OrderSignatureRequestSignatory**](OrderSignatureRequestSignatory.md) |  | 
 **Delegate** | Pointer to [**OrderSignatureDelegateRequest**](OrderSignatureDelegateRequest.md) |  | [optional] 
 
 ## Methods
 
 ### NewOrderSignatureRequest
 
-`func NewOrderSignatureRequest(signatory OrderSignatureSignatory, ) *OrderSignatureRequest`
+`func NewOrderSignatureRequest(signatory OrderSignatureRequestSignatory, ) *OrderSignatureRequest`
 
 NewOrderSignatureRequest instantiates a new OrderSignatureRequest object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSignatory
 
-`func (o *OrderSignatureRequest) GetSignatory() OrderSignatureSignatory`
+`func (o *OrderSignatureRequest) GetSignatory() OrderSignatureRequestSignatory`
 
 GetSignatory returns the Signatory field if non-nil, zero value otherwise.
 
 ### GetSignatoryOk
 
-`func (o *OrderSignatureRequest) GetSignatoryOk() (*OrderSignatureSignatory, bool)`
+`func (o *OrderSignatureRequest) GetSignatoryOk() (*OrderSignatureRequestSignatory, bool)`
 
 GetSignatoryOk returns a tuple with the Signatory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSignatory
 
-`func (o *OrderSignatureRequest) SetSignatory(v OrderSignatureSignatory)`
+`func (o *OrderSignatureRequest) SetSignatory(v OrderSignatureRequestSignatory)`
 
 SetSignatory sets Signatory field to given value.
 

@@ -6,13 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Href** | **string** | Ip block URI | 
 **Uuid** | **string** |  | 
-**Type** | [**ConnectionType**](ConnectionType.md) |  | 
 
 ## Methods
 
 ### NewRoutingProtocolPeeringConnectionItem
 
-`func NewRoutingProtocolPeeringConnectionItem(href string, uuid string, type_ ConnectionType, ) *RoutingProtocolPeeringConnectionItem`
+`func NewRoutingProtocolPeeringConnectionItem(href string, uuid string, ) *RoutingProtocolPeeringConnectionItem`
 
 NewRoutingProtocolPeeringConnectionItem instantiates a new RoutingProtocolPeeringConnectionItem object
 This constructor will assign default values to properties that have it defined,
@@ -65,26 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *RoutingProtocolPeeringConnectionItem) SetUuid(v string)`
 
 SetUuid sets Uuid field to given value.
-
-
-### GetType
-
-`func (o *RoutingProtocolPeeringConnectionItem) GetType() ConnectionType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RoutingProtocolPeeringConnectionItem) GetTypeOk() (*ConnectionType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RoutingProtocolPeeringConnectionItem) SetType(v ConnectionType)`
-
-SetType sets Type field to given value.
 
 
 

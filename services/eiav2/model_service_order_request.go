@@ -21,7 +21,6 @@ var _ MappedNullable = &ServiceOrderRequest{}
 type ServiceOrderRequest struct {
 	Tags                 []string               `json:"tags,omitempty"`
 	Contacts             []ServiceOrderContact  `json:"contacts,omitempty"`
-	Draft                *bool                  `json:"draft,omitempty"`
 	PurchaseOrder        *ServicePurchaseOrder  `json:"purchaseOrder,omitempty"`
 	ReferenceNumber      *string                `json:"referenceNumber,omitempty"`
 	Signature            *OrderSignatureRequest `json:"signature,omitempty"`
@@ -36,8 +35,6 @@ type _ServiceOrderRequest ServiceOrderRequest
 // will change when the set of required properties is changed
 func NewServiceOrderRequest() *ServiceOrderRequest {
 	this := ServiceOrderRequest{}
-	var draft bool = false
-	this.Draft = &draft
 	return &this
 }
 
@@ -46,8 +43,6 @@ func NewServiceOrderRequest() *ServiceOrderRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceOrderRequestWithDefaults() *ServiceOrderRequest {
 	this := ServiceOrderRequest{}
-	var draft bool = false
-	this.Draft = &draft
 	return &this
 }
 
@@ -113,38 +108,6 @@ func (o *ServiceOrderRequest) HasContacts() bool {
 // SetContacts gets a reference to the given []ServiceOrderContact and assigns it to the Contacts field.
 func (o *ServiceOrderRequest) SetContacts(v []ServiceOrderContact) {
 	o.Contacts = v
-}
-
-// GetDraft returns the Draft field value if set, zero value otherwise.
-func (o *ServiceOrderRequest) GetDraft() bool {
-	if o == nil || IsNil(o.Draft) {
-		var ret bool
-		return ret
-	}
-	return *o.Draft
-}
-
-// GetDraftOk returns a tuple with the Draft field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceOrderRequest) GetDraftOk() (*bool, bool) {
-	if o == nil || IsNil(o.Draft) {
-		return nil, false
-	}
-	return o.Draft, true
-}
-
-// HasDraft returns a boolean if a field has been set.
-func (o *ServiceOrderRequest) HasDraft() bool {
-	if o != nil && !IsNil(o.Draft) {
-		return true
-	}
-
-	return false
-}
-
-// SetDraft gets a reference to the given bool and assigns it to the Draft field.
-func (o *ServiceOrderRequest) SetDraft(v bool) {
-	o.Draft = &v
 }
 
 // GetPurchaseOrder returns the PurchaseOrder field value if set, zero value otherwise.
@@ -259,9 +222,6 @@ func (o ServiceOrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Contacts) {
 		toSerialize["contacts"] = o.Contacts
 	}
-	if !IsNil(o.Draft) {
-		toSerialize["draft"] = o.Draft
-	}
 	if !IsNil(o.PurchaseOrder) {
 		toSerialize["purchaseOrder"] = o.PurchaseOrder
 	}
@@ -295,7 +255,6 @@ func (o *ServiceOrderRequest) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "contacts")
-		delete(additionalProperties, "draft")
 		delete(additionalProperties, "purchaseOrder")
 		delete(additionalProperties, "referenceNumber")
 		delete(additionalProperties, "signature")

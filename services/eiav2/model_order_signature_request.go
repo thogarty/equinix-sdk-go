@@ -20,7 +20,7 @@ var _ MappedNullable = &OrderSignatureRequest{}
 
 // OrderSignatureRequest struct for OrderSignatureRequest
 type OrderSignatureRequest struct {
-	Signatory            OrderSignatureSignatory        `json:"signatory"`
+	Signatory            OrderSignatureRequestSignatory `json:"signatory"`
 	Delegate             *OrderSignatureDelegateRequest `json:"delegate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -31,7 +31,7 @@ type _OrderSignatureRequest OrderSignatureRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderSignatureRequest(signatory OrderSignatureSignatory) *OrderSignatureRequest {
+func NewOrderSignatureRequest(signatory OrderSignatureRequestSignatory) *OrderSignatureRequest {
 	this := OrderSignatureRequest{}
 	this.Signatory = signatory
 	return &this
@@ -46,9 +46,9 @@ func NewOrderSignatureRequestWithDefaults() *OrderSignatureRequest {
 }
 
 // GetSignatory returns the Signatory field value
-func (o *OrderSignatureRequest) GetSignatory() OrderSignatureSignatory {
+func (o *OrderSignatureRequest) GetSignatory() OrderSignatureRequestSignatory {
 	if o == nil {
-		var ret OrderSignatureSignatory
+		var ret OrderSignatureRequestSignatory
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *OrderSignatureRequest) GetSignatory() OrderSignatureSignatory {
 
 // GetSignatoryOk returns a tuple with the Signatory field value
 // and a boolean to check if the value has been set.
-func (o *OrderSignatureRequest) GetSignatoryOk() (*OrderSignatureSignatory, bool) {
+func (o *OrderSignatureRequest) GetSignatoryOk() (*OrderSignatureRequestSignatory, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *OrderSignatureRequest) GetSignatoryOk() (*OrderSignatureSignatory, bool
 }
 
 // SetSignatory sets field value
-func (o *OrderSignatureRequest) SetSignatory(v OrderSignatureSignatory) {
+func (o *OrderSignatureRequest) SetSignatory(v OrderSignatureRequestSignatory) {
 	o.Signatory = v
 }
 

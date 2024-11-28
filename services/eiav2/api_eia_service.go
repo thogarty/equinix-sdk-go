@@ -16,31 +16,35 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 // EIAServiceApiService EIAServiceApi service
 type EIAServiceApiService service
 
 type ApiCreateEquinixInternetAccessv2Request struct {
-	ctx            context.Context
-	ApiService     *EIAServiceApiService
-	serviceRequest *ServiceRequest
+	ctx                  context.Context
+	ApiService           *EIAServiceApiService
+	serviceCreateRequest *ServiceCreateRequest
 }
 
 // Options for creating Equinix Internet Access Service product
-func (r ApiCreateEquinixInternetAccessv2Request) ServiceRequest(serviceRequest ServiceRequest) ApiCreateEquinixInternetAccessv2Request {
-	r.serviceRequest = &serviceRequest
+func (r ApiCreateEquinixInternetAccessv2Request) ServiceCreateRequest(serviceCreateRequest ServiceCreateRequest) ApiCreateEquinixInternetAccessv2Request {
+	r.serviceCreateRequest = &serviceCreateRequest
 	return r
 }
 
-func (r ApiCreateEquinixInternetAccessv2Request) Execute() (*ServiceV2, *http.Response, error) {
+func (r ApiCreateEquinixInternetAccessv2Request) Execute() (*ServiceCreateResponse, *http.Response, error) {
 	return r.ApiService.CreateEquinixInternetAccessv2Execute(r)
 }
 
 /*
 CreateEquinixInternetAccessv2 Creates Equinix Internet Access Service
 
-By passing in the appropriate options, you can create Equinix Internet Access Service product. The entire request either succeeds or fails. In case of failure all the changes in the system are rolled back, so the system gets back to its stated before submitting the request
+By passing in the appropriate options, you can create Equinix Internet Access Service product.
+The entire request either succeeds or fails.
+In case of failure all the changes in the system are rolled back,
+so the system gets back to its stated before submitting the request <font color="red"><sup color="red">Beta</sup></font>
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateEquinixInternetAccessv2Request
@@ -54,13 +58,13 @@ func (a *EIAServiceApiService) CreateEquinixInternetAccessv2(ctx context.Context
 
 // Execute executes the request
 //
-//	@return ServiceV2
-func (a *EIAServiceApiService) CreateEquinixInternetAccessv2Execute(r ApiCreateEquinixInternetAccessv2Request) (*ServiceV2, *http.Response, error) {
+//	@return ServiceCreateResponse
+func (a *EIAServiceApiService) CreateEquinixInternetAccessv2Execute(r ApiCreateEquinixInternetAccessv2Request) (*ServiceCreateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ServiceV2
+		localVarReturnValue *ServiceCreateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EIAServiceApiService.CreateEquinixInternetAccessv2")
@@ -73,8 +77,8 @@ func (a *EIAServiceApiService) CreateEquinixInternetAccessv2Execute(r ApiCreateE
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serviceRequest == nil {
-		return localVarReturnValue, nil, reportError("serviceRequest is required and must be specified")
+	if r.serviceCreateRequest == nil {
+		return localVarReturnValue, nil, reportError("serviceCreateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +99,515 @@ func (a *EIAServiceApiService) CreateEquinixInternetAccessv2Execute(r ApiCreateE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.serviceRequest
+	localVarPostBody = r.serviceCreateRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeleteEquinixInternetAccessRequest struct {
+	ctx        context.Context
+	ApiService *EIAServiceApiService
+	serviceId  string
+	dryRun     *bool
+}
+
+// Setting this parameter to true will perform only request validation without actually deleting the service
+func (r ApiDeleteEquinixInternetAccessRequest) DryRun(dryRun bool) ApiDeleteEquinixInternetAccessRequest {
+	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiDeleteEquinixInternetAccessRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteEquinixInternetAccessExecute(r)
+}
+
+/*
+DeleteEquinixInternetAccess Deletes Equinix Internet Access Service
+
+Delete Equinix Internet Access product by passing the id of the service.
+The entire request either succeeds or fails. <font color="red"><sup color="red">Beta</sup></font>
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId Service identifier
+	@return ApiDeleteEquinixInternetAccessRequest
+*/
+func (a *EIAServiceApiService) DeleteEquinixInternetAccess(ctx context.Context, serviceId string) ApiDeleteEquinixInternetAccessRequest {
+	return ApiDeleteEquinixInternetAccessRequest{
+		ApiService: a,
+		ctx:        ctx,
+		serviceId:  serviceId,
+	}
+}
+
+// Execute executes the request
+func (a *EIAServiceApiService) DeleteEquinixInternetAccessExecute(r ApiDeleteEquinixInternetAccessRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EIAServiceApiService.DeleteEquinixInternetAccess")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internetAccess/v2/services/{serviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.dryRun != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dryRun", r.dryRun, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetEquinixInternetAccessServiceDetailsRequest struct {
+	ctx        context.Context
+	ApiService *EIAServiceApiService
+	serviceId  string
+}
+
+func (r ApiGetEquinixInternetAccessServiceDetailsRequest) Execute() (*ServiceReadModel, *http.Response, error) {
+	return r.ApiService.GetEquinixInternetAccessServiceDetailsExecute(r)
+}
+
+/*
+GetEquinixInternetAccessServiceDetails Get Equinix Internet Access Service details
+
+Get Equinix Internet Access Service details. <font color="red"><sup color="red">Beta</sup></font>
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceId Service identifier
+	@return ApiGetEquinixInternetAccessServiceDetailsRequest
+*/
+func (a *EIAServiceApiService) GetEquinixInternetAccessServiceDetails(ctx context.Context, serviceId string) ApiGetEquinixInternetAccessServiceDetailsRequest {
+	return ApiGetEquinixInternetAccessServiceDetailsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		serviceId:  serviceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ServiceReadModel
+func (a *EIAServiceApiService) GetEquinixInternetAccessServiceDetailsExecute(r ApiGetEquinixInternetAccessServiceDetailsRequest) (*ServiceReadModel, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ServiceReadModel
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EIAServiceApiService.GetEquinixInternetAccessServiceDetails")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internetAccess/v2/services/{serviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetEquinixInternetAccessServicesRequest struct {
+	ctx           context.Context
+	ApiService    *EIAServiceApiService
+	offset        *float32
+	limit         *float32
+	sort          *string
+	searchRequest *SearchRequest
+}
+
+// Search result offset
+func (r ApiGetEquinixInternetAccessServicesRequest) Offset(offset float32) ApiGetEquinixInternetAccessServicesRequest {
+	r.offset = &offset
+	return r
+}
+
+// Search result limit
+func (r ApiGetEquinixInternetAccessServicesRequest) Limit(limit float32) ApiGetEquinixInternetAccessServicesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Search result sorting
+func (r ApiGetEquinixInternetAccessServicesRequest) Sort(sort string) ApiGetEquinixInternetAccessServicesRequest {
+	r.sort = &sort
+	return r
+}
+
+// Search filters
+func (r ApiGetEquinixInternetAccessServicesRequest) SearchRequest(searchRequest SearchRequest) ApiGetEquinixInternetAccessServicesRequest {
+	r.searchRequest = &searchRequest
+	return r
+}
+
+func (r ApiGetEquinixInternetAccessServicesRequest) Execute() (*SearchResponse, *http.Response, error) {
+	return r.ApiService.GetEquinixInternetAccessServicesExecute(r)
+}
+
+/*
+GetEquinixInternetAccessServices Get Equinix Internet Access Services
+
+Get Equinix Internet Access Services that match specified criteria. <font color="red"><sup color="red">Beta</sup></font>
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetEquinixInternetAccessServicesRequest
+*/
+func (a *EIAServiceApiService) GetEquinixInternetAccessServices(ctx context.Context) ApiGetEquinixInternetAccessServicesRequest {
+	return ApiGetEquinixInternetAccessServicesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return SearchResponse
+func (a *EIAServiceApiService) GetEquinixInternetAccessServicesExecute(r ApiGetEquinixInternetAccessServicesRequest) (*SearchResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SearchResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EIAServiceApiService.GetEquinixInternetAccessServices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internetAccess/v2/services/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.searchRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

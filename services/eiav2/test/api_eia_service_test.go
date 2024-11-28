@@ -31,4 +31,37 @@ func Test_eiav2_EIAServiceApiService(t *testing.T) {
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
+
+	t.Run("Test EIAServiceApiService DeleteEquinixInternetAccess", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var serviceId string
+
+		httpRes, err := apiClient.EIAServiceApi.DeleteEquinixInternetAccess(context.Background(), serviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test EIAServiceApiService GetEquinixInternetAccessServiceDetails", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var serviceId string
+
+		resp, httpRes, err := apiClient.EIAServiceApi.GetEquinixInternetAccessServiceDetails(context.Background(), serviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test EIAServiceApiService GetEquinixInternetAccessServices", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		resp, httpRes, err := apiClient.EIAServiceApi.GetEquinixInternetAccessServices(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
 }

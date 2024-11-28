@@ -20,14 +20,14 @@ type IpBlockQuestionsAnswer string
 
 // List of IpBlockQuestions_answer
 const (
-	IPBLOCKQUESTIONSANSWER_TRUE  IpBlockQuestionsAnswer = "true"
-	IPBLOCKQUESTIONSANSWER_FALSE IpBlockQuestionsAnswer = "false"
+	IPBLOCKQUESTIONSANSWER_YES IpBlockQuestionsAnswer = "YES"
+	IPBLOCKQUESTIONSANSWER_NO  IpBlockQuestionsAnswer = "NO"
 )
 
 // All allowed values of IpBlockQuestionsAnswer enum
 var AllowedIpBlockQuestionsAnswerEnumValues = []IpBlockQuestionsAnswer{
-	"true",
-	"false",
+	"YES",
+	"NO",
 }
 
 func (v *IpBlockQuestionsAnswer) UnmarshalJSON(src []byte) error {

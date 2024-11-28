@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// ConnectionType Connection type. IA_C - internet access connection on dedicated port; IA_VC - internet access virtual connection on Fabric Port, Virtual Device, Bare Metal, etc.
+// ConnectionType the model 'ConnectionType'
 type ConnectionType string
 
 // List of ConnectionType

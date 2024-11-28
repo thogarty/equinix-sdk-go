@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Connection** | Pointer to [**DirectPeeringIpv4RequestConnection**](DirectPeeringIpv4RequestConnection.md) |  | [optional] 
+**Connection** | Pointer to [**Connection**](Connection.md) |  | [optional] 
 **EquinixPeerIps** | Pointer to **[]string** | Peering IP addresses in Version 4 (IPv4)  | [optional] 
 **EquinixVRRPIp** | Pointer to **string** | Virtual router group IP addresses in Version 4 (IPv4)  | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConnection
 
-`func (o *DirectPeeringIpv4Request) GetConnection() DirectPeeringIpv4RequestConnection`
+`func (o *DirectPeeringIpv4Request) GetConnection() Connection`
 
 GetConnection returns the Connection field if non-nil, zero value otherwise.
 
 ### GetConnectionOk
 
-`func (o *DirectPeeringIpv4Request) GetConnectionOk() (*DirectPeeringIpv4RequestConnection, bool)`
+`func (o *DirectPeeringIpv4Request) GetConnectionOk() (*Connection, bool)`
 
 GetConnectionOk returns a tuple with the Connection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnection
 
-`func (o *DirectPeeringIpv4Request) SetConnection(v DirectPeeringIpv4RequestConnection)`
+`func (o *DirectPeeringIpv4Request) SetConnection(v Connection)`
 
 SetConnection sets Connection field to given value.
 

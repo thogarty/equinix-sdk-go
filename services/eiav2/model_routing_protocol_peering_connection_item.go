@@ -21,9 +21,8 @@ var _ MappedNullable = &RoutingProtocolPeeringConnectionItem{}
 // RoutingProtocolPeeringConnectionItem struct for RoutingProtocolPeeringConnectionItem
 type RoutingProtocolPeeringConnectionItem struct {
 	// Ip block URI
-	Href                 string         `json:"href"`
-	Uuid                 string         `json:"uuid"`
-	Type                 ConnectionType `json:"type"`
+	Href                 string `json:"href"`
+	Uuid                 string `json:"uuid"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,11 +32,10 @@ type _RoutingProtocolPeeringConnectionItem RoutingProtocolPeeringConnectionItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRoutingProtocolPeeringConnectionItem(href string, uuid string, type_ ConnectionType) *RoutingProtocolPeeringConnectionItem {
+func NewRoutingProtocolPeeringConnectionItem(href string, uuid string) *RoutingProtocolPeeringConnectionItem {
 	this := RoutingProtocolPeeringConnectionItem{}
 	this.Href = href
 	this.Uuid = uuid
-	this.Type = type_
 	return &this
 }
 
@@ -97,30 +95,6 @@ func (o *RoutingProtocolPeeringConnectionItem) SetUuid(v string) {
 	o.Uuid = v
 }
 
-// GetType returns the Type field value
-func (o *RoutingProtocolPeeringConnectionItem) GetType() ConnectionType {
-	if o == nil {
-		var ret ConnectionType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *RoutingProtocolPeeringConnectionItem) GetTypeOk() (*ConnectionType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *RoutingProtocolPeeringConnectionItem) SetType(v ConnectionType) {
-	o.Type = v
-}
-
 func (o RoutingProtocolPeeringConnectionItem) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -133,7 +107,6 @@ func (o RoutingProtocolPeeringConnectionItem) ToMap() (map[string]interface{}, e
 	toSerialize := map[string]interface{}{}
 	toSerialize["href"] = o.Href
 	toSerialize["uuid"] = o.Uuid
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -149,7 +122,6 @@ func (o *RoutingProtocolPeeringConnectionItem) UnmarshalJSON(data []byte) (err e
 	requiredProperties := []string{
 		"href",
 		"uuid",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -181,7 +153,6 @@ func (o *RoutingProtocolPeeringConnectionItem) UnmarshalJSON(data []byte) (err e
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "href")
 		delete(additionalProperties, "uuid")
-		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 
